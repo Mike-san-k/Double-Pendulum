@@ -1,7 +1,10 @@
 const HEIGHT = 500;
 const WIDTH = 1000;
 const PI = 3.1415926;
-const g = 1;
+let g = 1;
+
+let c1 = 100;
+let c2 = 100;
 
 let r1 = 100;
 let m1 = 0.1;
@@ -18,8 +21,10 @@ let a2_v = 0;
 function setup() {
 	frameRate(240);
 	createCanvas(WIDTH, HEIGHT);
+	extraCanvas = createGraphics(WIDTH, HEIGHT);
+	extraCanvas.clear();
 	length1 = createSlider(1, 300, 100);
-	length1.translate;
+	gravity = createSlider(0, 10, 5);
 	length2 = createSlider(1, 300, 100);
 	ma1 = createSlider(1, 100, 20);
 	ma2 = createSlider(1, 100, 20);
@@ -29,10 +34,14 @@ function setup() {
 function draw() {
 	background(40);
 
+	c1 = c1 + 1;
+	c2 = c2 + c1;
+
 	r1 = length1.value();
 	r2 = length2.value();
 	m1 = ma1.value()/500;
 	m2 = ma2.value()/500;
+	g = gravity.value();
 
 	num1 = -g*(2*m1 + m2)*sin(a1);
 	num2 = -m2*g*sin(a1-2*a2);
@@ -61,11 +70,30 @@ function draw() {
 	line(WIDTH/2, 100, x1, y1);
 
 	fill(30);
+	stroke(255);
+    extraCanvas.stroke(a2_v, a1_v, 50, 80);
+	extraCanvas.strokeWeight(5);
+	extraCanvas.point(x2, y2);
+	image(extraCanvas, 0, 0);
+
 	ellipse(x1, y1, m1*300, m1*300);
 	ellipse(x2, y2, m2*300, m2*300);
 
+	if (c1 > 255){
+		c1 = 100;
+	}
+
+	if (c2 > 255){
+		c2 = 100;
+	}
+	
+
+
+	
 	fill(0);
 	ellipse(WIDTH/2, 100, 8, 8);
+
+
 
 
 }
