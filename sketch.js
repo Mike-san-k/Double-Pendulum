@@ -71,7 +71,7 @@ function draw() {
 
 	fill(30);
 	stroke(255);
-    extraCanvas.stroke(a2_v, a1_v, 50, 80);
+    extraCanvas.stroke(0, 242, 255, 80);
 	extraCanvas.strokeWeight(5);
 	extraCanvas.point(x2, y2);
 	image(extraCanvas, 0, 0);
@@ -97,4 +97,3 @@ function draw() {
 
 
 }
-
